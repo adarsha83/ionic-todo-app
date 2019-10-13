@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { AddItemPage } from '../add-item/add-item.page';
 
 @Component({
   selector: 'app-home',
@@ -8,29 +9,28 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  public items;
-  constructor(public navCtrl: NavController) {}
+  public items = [];
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {}
 
-  addItem() {
+  async addItem() {
+    const addModal = await this.modalCtrl.create({
+      component: AddItemPage
+    });
 
+    await addModal.present();
+
+    const { data } = await addModal.onDidDismiss();
+    if(data) {
+      this.items.push(data);
+    }
+
+    return;
   }
 
-  viewItem(item: Item) {
-
+  viewItem(item) {
+    
   }
 
-  ngOnInit() {
-
-    this.items = [
-      {title: 'hi1', description: 'test1'},
-      {title: 'hi2', description: 'test2'},
-      {title: 'hi3', description: 'test3'}
-    ];
-
-  }
-
-}
-
-class Item {
+  ngOnInit() {}
 
 }

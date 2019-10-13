@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Add New Todo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input type="text" [(ngModel)]="title"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-input type="text" [(ngModel)]="description"></ion-input>
+      </ion-item>
+
+      <ion-button color="secondary" (click)="saveItem()" expand="full">Save</ion-button>
+
+    </ion-list>
+</ion-content>
