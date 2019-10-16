@@ -43,6 +43,10 @@ export class HomePage implements OnInit {
     return await viewModal.present();
   }
 
+  removeItem(index) {
+    this.items.splice(index, 1);
+  }
+
   ngOnInit() {
     this.storage.get('todos').then((data) => {
       this.items = data || [];
