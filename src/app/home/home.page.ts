@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { AddItemPage } from '../add-item/add-item.page';
 import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 import { ItemDetailPage } from '../item-detail/item-detail.page';
@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements OnInit {
 
   public items = [];
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public storage: Storage) {}
+  constructor(public modalCtrl: ModalController, public storage: Storage) {}
 
   async addItem() {
     const addModal = await this.modalCtrl.create({
@@ -45,7 +45,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.storage.get('todos').then((data) => {
-      this.items = data;
+      this.items = data || [];
     });
   }
 
